@@ -1267,7 +1267,8 @@ skipcomment(const char *cp)
 				incomment = STRING_LITERAL;
 				linestate = LS_DIRTY;
 				cp += 1;
-			} else if (strncmp(cp, "R\"(", 3) == 0) {
+			} else if (strncmp(cp, "R\"(", 3) == 0 &&
+			    (cp == tline || endsym(cp[-1]))) {
 				incomment = RAW_STRING_LITERAL;
 				linestate = LS_DIRTY;
 				cp += 3;
